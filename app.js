@@ -5,7 +5,7 @@ var config=require('config');
 var db=config.get('mongoURI');
 var bodyparser=require('body-parser');
 app.use(bodyparser.urlencoded({extended:false}));
-const PORT=process.env.PORT||3000;
+const PORT=process.env.PORT||4000;
 
 mongoose.connect(db,{ 
 	useNewUrlParser: true,
