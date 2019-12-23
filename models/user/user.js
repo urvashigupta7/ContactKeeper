@@ -1,6 +1,6 @@
 const mongoose=require('mongoose');
 const validator=require('validator');
-var bcrypt=require('bcrypt');
+var bcrypt=require('bcryptjs');
 var config=require('config');
 const jwtsecretkey=config.get('jwtsecretkey');
 const jwt=require('jsonwebtoken');
