@@ -14,10 +14,7 @@ const Register=()=>{
     }
     const onSubmit=(e)=>{
         e.preventDefault();
-        if(name===''||email===''||password2===''||password===''){
-            alertContext.setAlert('Please enter all fields','danger')
-        }
-        else if(password2!==password){
+         if(password2!==password){
          alertContext.setAlert('Passwords do not match','danger')
         }
         console.log('submit');
@@ -30,13 +27,13 @@ const Register=()=>{
           <form onSubmit={onSubmit}>
               <div className='form-group'>
                   <label htmlFor='name'>Name</label>
-                  <input type='text' name='name' value={name} onChange={onChange}/>
+                  <input type='text' name='name' value={name} onChange={onChange} required/>
                   <label htmlFor='email'>Email Address</label>
-                  <input type='email' name='email' value={email} onChange={onChange}/>
+                  <input type='email' name='email' value={email} onChange={onChange} required/>
                   <label htmlFor='password'>Password</label>
-                  <input type='password' name='password' value={password} onChange={onChange}/>
+                  <input type='password' name='password' value={password} minLength='6' onChange={onChange} required />
                   <label htmlFor='password2'> Confirm Password</label>
-                  <input type='password' name='password2' value={password2} onChange={onChange}/>
+                  <input type='password' name='password2' value={password2} minLength='6' onChange={onChange} required/>
                   
               </div>
               <input type='submit' value='Register'className='btn btn-block btn-primary' />
