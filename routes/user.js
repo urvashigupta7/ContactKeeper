@@ -8,7 +8,7 @@ router.post('/',async(req,res)=>{
 		const token= await addeduser.generatetoken();
 	res.send({token});
 	}catch(e){
-		res.send(e);
+		res.status(400).send('User already exists');
 	}
 	
 })
@@ -29,7 +29,7 @@ router.get('/',auth,(req,res)=>{
 	try{
 		res.send(req.founduser);
 	}catch(e){
-		res.send(e)
+		res.status(400).send(e)
 	}
 })
 
