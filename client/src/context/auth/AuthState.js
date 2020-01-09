@@ -51,7 +51,23 @@ const AuthState=(props)=>{
        dispatch({type:AUTH_ERROR})
       }
     }
-   
+   const loginUser=async(formData)=>{
+    const config={
+      headers:{
+        'Content-Type':'application/json'
+      }
+    }
+    try{
+    const res= await axios.post('/api/users/login',formData,config)
+   dispatch({type:LOGIN_SUCCESS,payload:res.data})
+   loaduser()
+    }catch(e){
+      dispatch({type:LOGIN_FAIL,payload:'Login Fail'})
+    }
+   }
+   const logout=()=>{
+     dispatch({type:LOGOUT})
+   }
     return (
         <AuthContext.Provider
           value={{
@@ -62,7 +78,9 @@ const AuthState=(props)=>{
             user:state.user,
             registerUser,
             clearError,
-            loaduser
+            loaduser,
+            loginUser,
+            logout
 
             
           }}

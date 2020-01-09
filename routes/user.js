@@ -19,10 +19,8 @@ router.post('/login',async(req,res)=>{
 		const token=await finduser.generatetoken();
 		res.send({token});
 
-		
-		
 	}catch(e){
-		res.send(e);
+		res.status(400).send('login fail');
 	}
 })
 router.get('/',auth,(req,res)=>{

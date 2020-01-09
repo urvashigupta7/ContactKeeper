@@ -30,12 +30,13 @@ const Register=(props)=>{
         e.preventDefault();
          if(password2!==password){
          alertContext.setAlert('Passwords do not match','danger')
-        }
+        }else{
         authContext.registerUser({
             name,
             email,
             password
         })
+    }
     }
     return(
         <div className='form-container'>
