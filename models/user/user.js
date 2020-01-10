@@ -44,9 +44,7 @@ userSchema.pre('save',async function(next)
 });
 userSchema.methods.generatetoken=async function(){
 	const curruser=this;
-	const token= await jwt.sign({_id:curruser._id.toString()},jwtsecretkey,{
-		expiresIn:360000
-	})
+	const token= await jwt.sign({_id:curruser._id.toString()},jwtsecretkey)
 
 	return token;
 }

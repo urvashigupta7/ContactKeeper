@@ -12,11 +12,12 @@ import Register from './Components/auth/register'
 import Login from './Components/auth/login'
 import setAuthToken from './utils/setAuthToken'
 import PrivateRoute from './Components/Routing/privateroute'
-if(localStorage.token){
-  setAuthToken(localStorage.token)
-}
 
-const App=()=> {
+
+const App=()=> { 
+  if(localStorage.token){
+    setAuthToken(localStorage.token)
+  }
   return (
     <AuthState>
     <ContactState>

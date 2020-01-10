@@ -22,12 +22,20 @@ router.post('/',auth,async(req,res)=>{
 	}
 })
 //delete contacts
-router.delete('/:id',(req,res)=>{
-	
+router.delete('/:id',auth,async(req,res)=>{
+
+		const deletedtask=await contact.findOneAndDelete({_id:req.params.id,user:req.founduser._id});
+		res.send(deletedtask);	
+
 })
 //edit contacts
-router.put('/:id',(req,res)=>{
-	
+router.put('/:id',auth,async(req,res)=>{
+	try{
+	const updated=await contact.findByIdAndUpdate(req.params.id,req.body)
+	res.send(updated);
+	}catch(e){
+		res.status(400).send('failde to update');
+	}
 })
 
 module.exports=router;

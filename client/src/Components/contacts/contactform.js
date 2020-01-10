@@ -1,7 +1,9 @@
 import React,{useState,useContext,useEffect} from 'react';
 import ContactContext from '../../context/contact/contactContext'
+import AlertContext from '../../context/alert/alertContext';
 const ContactForm=()=>{
     const contactContext=useContext(ContactContext);
+    const alertContext=useContext(AlertContext);
     
     useEffect(()=>{
         
@@ -15,6 +17,11 @@ const ContactForm=()=>{
            type:'personal' 
            }) 
         }
+        if(contactContext.error==='Failed To Add Contact'){
+            alertContext.setAlert(contactContext.error,'danger');
+            contactContext.clearError();
+        }
+         // eslint-disable-next-line
       },[contactContext,contactContext.currentval])
     const [contact,setContact]=useState({
         name:'',
@@ -55,7 +62,7 @@ const ContactForm=()=>{
           </h2>
           <input type='text' placeholder='Name' name='name' value={contact.name} onChange={onChange}/>
           <input type='email' placeholder='Email' name='email' value={contact.email} onChange={onChange}/>
-          <input type='text' placeholder='Phone' name='phone' value={contact.phone} onChange={onChange}/>
+          <input type='text' placeholder='Phone' name='phone' value={contact.phone} minLength='10' onChange={onChange}/>
           <h4>Contact Type</h4>
           <input type='radio'  name='type' value="personal" checked={contact.type==='personal'} onChange={onChange}/>Personal{' '}
           <input type='radio'  name='type' value="professional" checked={contact.type==='professional'} onChange={onChange}/>Professional{' '}

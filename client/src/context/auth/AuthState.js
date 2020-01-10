@@ -18,7 +18,7 @@ const AuthState=(props)=>{
     const initialState={
      token:localStorage.getItem('token'),
      isAuthenticated:null,
-     loading:true,
+     loading:false,
      error:null,
      user:null
     };
@@ -41,6 +41,7 @@ const AuthState=(props)=>{
       dispatch({type:CLEAR_ERRORS})
     }
     const loaduser=async()=>{
+      console.log('hey')
       if(localStorage.token){
         setAuthToken(localStorage.token)
       }

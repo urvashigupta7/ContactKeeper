@@ -15,7 +15,7 @@ switch(action.type){
         return{
             ...state,
             isAuthenticated:true,
-            loading:false,
+            loading:true,
             user:action.payload
         }
     case REGISTER_SUCCESS:
@@ -24,7 +24,7 @@ switch(action.type){
         ...state,
         ...action.payload,
         isAuthenticated:true,
-        loading:false
+        loading:true
     }
     case LOGIN_SUCCESS:
       localStorage.setItem('token',action.payload.token)
@@ -32,7 +32,7 @@ switch(action.type){
         ...state,
         ...action.payload,
         isAuthenticated:true,
-        loading:false
+        loading:true
     }
     case LOGIN_FAIL:
     case REGISTER_FAIL:
