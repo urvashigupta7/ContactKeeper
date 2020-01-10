@@ -7,12 +7,21 @@ var bodyparser=require('body-parser');
 var path=require('path');
 app.use(bodyparser.urlencoded({extended:false}));
 const PORT=process.env.PORT||4000;
+if(process.env.NODE_ENV==='production'){
+    mongoose.connect(process.env.mongoURI,{ 
+        useNewUrlParser: true,
+         useCreateIndex: true,
+        useFindAndModify: false,
+        useUnifiedTopology: true});
+    
+}else{
 
 mongoose.connect(db,{ 
 	useNewUrlParser: true,
      useCreateIndex: true,
     useFindAndModify: false,
     useUnifiedTopology: true});
+}
 
 app.use(express.json());
 

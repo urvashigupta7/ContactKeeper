@@ -8,7 +8,13 @@ const auth=async function(req,res,next){
 	}
 	else{
 		try{
-		const decoded= await jwt.verify(token,config.get('jwtsecretkey'));
+			var decoded;
+			if(process.env.NODE_ENV==='production'){
+            	 decoded= await jwt.verify(token,process.env.jwtsecretkey);
+			}
+			else{
+		    decoded= await jwt.verify(token,config.get('jwtsecretkey'));
+			}
 		const finduser= await user.findOne({_id:decoded._id});
 			req.founduser=finduser;
 			next();

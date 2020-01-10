@@ -44,8 +44,12 @@ userSchema.pre('save',async function(next)
 });
 userSchema.methods.generatetoken=async function(){
 	const curruser=this;
-	const token= await jwt.sign({_id:curruser._id.toString()},jwtsecretkey)
-
+	var token;
+	if(process.env.NODE_ENV==='production'){
+         token=await jwt.sign({_id:curruser._id.toString()},process.env.jwtsecretkey)
+	}else{
+	 token= await jwt.sign({_id:curruser._id.toString()},jwtsecretkey)
+	}
 	return token;
 }
 userSchema.statics.findByCredentials=async (email,password)=>{

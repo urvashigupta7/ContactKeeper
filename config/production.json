@@ -1,4 +1,0 @@
-{
-	"mongoURI":"mongodb+srv://urvashi:delhi2018@cluster0-lhmgd.mongodb.net/test?retryWrites=true&w=majority",
-	"jwtsecretkey":"secret"
-}
