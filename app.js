@@ -1,7 +1,6 @@
 var express=require('express');
 var app=express();
 var mongoose=require('mongoose');
-
 var bodyparser=require('body-parser');
 var path=require('path');
 app.use(bodyparser.urlencoded({extended:false}));
@@ -13,10 +12,9 @@ if(process.env.NODE_ENV==='production'){
         useFindAndModify: false,
         useUnifiedTopology: true});
     
-}else{ 
+}else{
     var config=require('config');
-var db=config.get('mongoURI');
-
+    var db=config.get('mongoURI');
 mongoose.connect(db,{ 
 	useNewUrlParser: true,
      useCreateIndex: true,

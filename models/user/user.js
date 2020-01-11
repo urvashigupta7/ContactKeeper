@@ -1,8 +1,7 @@
 const mongoose=require('mongoose');
 const validator=require('validator');
 var bcrypt=require('bcryptjs');
-var config=require('config');
-const jwtsecretkey=config.get('jwtsecretkey');
+
 const jwt=require('jsonwebtoken');
 const userSchema=new mongoose.Schema({
 	name:{
@@ -48,6 +47,8 @@ userSchema.methods.generatetoken=async function(){
 	if(process.env.NODE_ENV==='production'){
          token=await jwt.sign({_id:curruser._id.toString()},process.env.jwtsecretkey)
 	}else{
+		var config=require('config');
+const jwtsecretkey=config.get('jwtsecretkey');
 	 token= await jwt.sign({_id:curruser._id.toString()},jwtsecretkey)
 	}
 	return token;

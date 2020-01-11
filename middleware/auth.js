@@ -1,6 +1,6 @@
 const jwt=require('jsonwebtoken');
 const user=require('../models/user/user');
-const config=require('config');
+
 const auth=async function(req,res,next){
 	const token=req.header('x-auth-token');
 	if(!token){
@@ -13,6 +13,7 @@ const auth=async function(req,res,next){
             	 decoded= await jwt.verify(token,process.env.jwtsecretkey);
 			}
 			else{
+				const config=require('config');
 		    decoded= await jwt.verify(token,config.get('jwtsecretkey'));
 			}
 		const finduser= await user.findOne({_id:decoded._id});
